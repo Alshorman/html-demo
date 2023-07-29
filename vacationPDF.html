@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+
+     
+    
+    <title>اجازة</title>
+    <link rel="stylesheet" href="style/vacationPDF.css">
+      
+</head>
+<body>
+    
+    <div  id="vinfo">
+        <h1 style="text-align: center;margin-top: 0;margin-bottom: 1px;">طلب اجازة</h1>
+   <div class="container" id="vac">
+        <div class="white">اجراء منح الاجازة</div>
+        <div class="black">
+            <p>نوع الاجازة:<b id="vt">.</b></p>
+            
+        </div>
+
+        <div class="white">طلب الاجازة</div>
+        <div class="black">
+            <div class="container2">
+                <p class="ma">الاسم</p>
+                <b id="empName"class="ma"></b>
+                <p>رقم الهوية/الاقامة</p>
+                <b id="empSSn"></b>
+                <p>الوظيفة:</p>
+                <b id="empJob"></b>
+                <p>الرقم الوظيفي</p>
+                <b id="empid"></b>
+                <p>الفرع:</p>
+                <b id="empBranch"></b>
+
+            </div>
+            <p>مــدة الاجازة&emsp;  <b id="dur"></b>&emsp;  يوم تبدأ من تاريخ&emsp; <b id="startIn"></b>&emsp; وتنتهي بتاريخ&emsp; <b id="endIn"></b>&emsp;  </p>
+            <p>العنوان اثناء الاجازة </p>
+            <b id="empAdd" style="width: 450px;"></b>
+            <p>التوقيع: </p>
+            <p >تخصم المديونية كاملة من راتبي في حال عدم رجوعي للبلد</p>
+        </div>
+
+        <div class="white">الكفالة لغير السعوديين في حال وجود سلفة</div>
+        <div class="black"><p>انا الموقع ادناة اكفل الموظف المذكور اعلاه كفالة غرامية قدرها <span dir="rtl">(     <b id="mony"></b>   )</span> ر.س والتزم بتسدسد جميع مديونيتة في حال عدم رجوعة للعمل واتعهد ان لا اطلب اجازة اثناء سفرة.</p>
+        <p>الاسم <b id="man"></b>  التوقيع&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+        </div>
+
+        <div class="white">تعهد المدير المباشر</div>
+        <div class="black">
+            <p>اتعهد بأنة تم توفير الموظف البديل وانة تم الاتفاق على ادارة اعمال ومهام الموظف المعني اثناء اجازتة </p>
+            <p>الاسم<span dir="rtl">:.........................................................................</span>التوقيع<span dir="rtl">:.......................</span></span></p>
+        </div>
+
+        <div class="white">الموافقة</div>
+        <div class="black">
+            <p>لا مانع من منحة الاجازة المطلوبة اذا كان يستحقها نظاما.</p>
+           <p>المدير المباشر</p>
+           <p>الاسم<span dir="rtl">:.........................................................................</span>التوقيع<span dir="rtl">:.......................</span></span></p>
+           <p>مدير الموارد البشرية</p>
+           <p>الاسم<span dir="rtl">:.........................................................................</span>التوقيع<span dir="rtl">:.......................</span></span></p>
+           <p>المدير العام</p>
+           <p>الاسم<span dir="rtl">:.........................................................................</span>التوقيع<span dir="rtl">:.......................</span></span></p>
+
+        </div>
+
+        <div class="white">الموارد البشرية</div>
+        <div class="black">
+            <p>الاستحقاقيات<span dir="rtl">:</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;الخروج والعودة (&emsp;)</p>
+            <p>مللاحظات<span dir="rtl">:.........................................................................................................................</span></p>
+            <p>الاسم<span dir="rtl">:.........................................................................</span>التوقيع<span dir="rtl">:.......................</span></span></p>
+        </div>
+
+        <div class="white">الموارد البشرية</div>
+        <div class="black">
+            <table style="width: 100%;">
+                <tr>
+                    <td>تم عمل الخروج والعودة ( &emsp; )</td>
+                    <td>تسليم جواز السفر ( &emsp; )</td>
+                </tr>
+                <tr>
+                    <td>استلام الاقامة (&emsp;)</td>
+                    <td>استلام التامين الطبي (&emsp;)</td>
+                </tr>
+                <tr>
+                    <td>الاسم:</td>
+                    <td>التوقيع:</td>
+                </tr>
+            </table>
+        </div>
+   </div> 
+   
+</div>
+   <button id='download-button'>Download as PDF</button>
+  
+   <script src="javas/html2pdf.bundle.min.js"></script>
+<script>
+     document.getElementById('download-button').onclick=function(){
+            var element = document.getElementById('vinfo');
+            var opt = {
+            margin:       [0,0],
+            filename:     'myfile.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'cm', format: 'a4', orientation: 'p' ,floatPrecision: 16},
+            
+            };
+            html2pdf(element, opt);
+        };
+        </script>
+  
+<script>
+
+
+       var vData=sessionStorage.getItem("vData");
+        vData=JSON.parse(vData);
+        document.getElementById("vt").innerHTML=vData.vt;
+        document.getElementById("empName").innerHTML=vData.employeeName;
+        document.getElementById("empJob").innerHTML=vData.empJob
+        document.getElementById("empBranch").innerHTML=vData.empBranch
+        document.getElementById("empSSn").innerHTML=vData.employeeSSN;
+       
+        document.getElementById("startIn").innerHTML=vData.startIn;
+        document.getElementById("dur").innerHTML=vData.duration;
+        document.getElementById("endIn").innerHTML=vData.endIn;
+        document.getElementById("empAdd").innerHTML=vData.emplpyeeAddress;
+        document.getElementById("man").innerHTML=vData.man
+</script>
+
+
+</body>
+</html>
